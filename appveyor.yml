@@ -1,3 +1,4 @@
+image: Visual Studio 2017
 platform: Any CPU
 configuration: Release
 
@@ -5,26 +6,17 @@ pull_requests:
   do_not_increment_build_number: true
 
 install:
-  - cinst gitversion.portable --version=3.4.1 -y
-  - cinst gitlink --version=2.2.0 -y
+  - cinst gitversion.portable -y
 
 before_build:
-  - appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
-  - NuGet restore Source/OxyPlot.AppVeyor.sln
+  - nuget restore Source/OxyPlot.Contrib.sln
   - gitversion /l console /output buildserver /updateAssemblyInfo
 
 build:
-  project: Source/OxyPlot.AppVeyor.sln
+  project: Source/OxyPlot.Contrib.sln
   verbosity: minimal
 
-after_build:
-  - gitlink c:\projects\oxyplot-contrib -u https://github.com/oxyplot/oxyplot-contrib -f Source/OxyPlot.AppVeyor.sln 
-  - NuGet pack Source\OxyPlot.Contrib\OxyPlot.Contrib.nuspec -version "%GitVersion_NuGetVersion%"
-
 artifacts:
-  - path: Source\OxyPlot.Contrib\bin\Release
-    name: OxyPlot-Contrib-$(GitVersion_SemVer)
-    type: zip
   - path: '*.nupkg'
 
 deploy:
