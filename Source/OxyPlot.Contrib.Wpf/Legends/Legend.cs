@@ -25,14 +25,14 @@ namespace OxyPlot.Wpf
         /// <summary>
         /// The internal model.
         /// </summary>
-        private readonly OxyPlot.Legends.Legend internalLegend;
+        private readonly OxyPlot.Legends.Legend InternalLegend;
 
         /// <summary>
         /// Initializes static members of the <see cref="Legend" /> class.
         /// </summary>
         public Legend()
         {
-            this.internalLegend = new OxyPlot.Legends.Legend();
+            this.InternalLegend = new OxyPlot.Legends.Legend();
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace OxyPlot.Wpf
         /// </summary>
         private void SynchronizeProperties()
         {
-            var m = this.internalLegend;
+            var m = this.InternalLegend;
 
             m.LegendTextColor = this.LegendTextColor.ToOxyColor();
             m.LegendTitle = this.LegendTitle;
@@ -95,6 +95,16 @@ namespace OxyPlot.Wpf
             {
                 pc.InvalidatePlot(false);
             }
+        }
+
+        /// <summary>
+        /// Creates the internal legend.
+        /// </summary>
+        /// <returns>The internal legend.</returns>
+        public OxyPlot.Legends.Legend CreateModel()
+        {
+            this.SynchronizeProperties();
+            return this.InternalLegend;
         }
     }
 }

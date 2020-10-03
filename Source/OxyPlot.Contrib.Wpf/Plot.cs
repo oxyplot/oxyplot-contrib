@@ -50,6 +50,7 @@ namespace OxyPlot.Wpf
             this.series = new ObservableCollection<Series>();
             this.axes = new ObservableCollection<Axis>();
             this.annotations = new ObservableCollection<Annotation>();
+            this.legends = new ObservableCollection<Legend>();
 
             this.series.CollectionChanged += this.OnSeriesChanged;
             this.axes.CollectionChanged += this.OnAxesChanged;
@@ -263,6 +264,18 @@ namespace OxyPlot.Wpf
             foreach (var s in this.Series)
             {
                 this.internalModel.Series.Add(s.CreateModel());
+            }
+        }
+
+        /// <summary>
+        /// Synchronizes the legends in the internal model.
+        /// </summary>
+        private void SynchronizeLegends()
+        {
+            this.internalModel.Legends.Clear();
+            foreach (var l in this.Legends)
+            {
+                this.internalModel.Legends.Add(l.CreateModel());
             }
         }
     }

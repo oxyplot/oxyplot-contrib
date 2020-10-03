@@ -23,11 +23,11 @@ namespace OxyPlot.Wpf.Tests
                 OxyAssert.PropertiesExist(typeof(PlotElement), typeof(Series));
             }
 
-            [Test]
-            public void SelectableElement()
-            {
-                OxyAssert.PropertiesExist(typeof(SelectableElement), typeof(Series));
-            }
+            //[Test]
+            //public void SelectableElement()
+            //{
+            //    OxyAssert.PropertiesExist(typeof(SelectableElement), typeof(Series));
+            //}
 
             [Test]
             public void Series()

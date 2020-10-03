@@ -242,6 +242,11 @@ namespace OxyPlot.Wpf
         private readonly ObservableCollection<Series> series;
 
         /// <summary>
+        /// The legends.
+        /// </summary>
+        private readonly ObservableCollection<Legend> legends;
+
+        /// <summary>
         /// Gets the axes.
         /// </summary>
         /// <value>The axes.</value>
@@ -506,6 +511,18 @@ namespace OxyPlot.Wpf
             get
             {
                 return this.series;
+            }
+        }
+
+        /// <summary>
+        /// Gets the series.
+        /// </summary>
+        /// <value>The series.</value>
+        public Collection<Legend> Legends
+        {
+            get
+            {
+                return this.legends;
             }
         }
 
