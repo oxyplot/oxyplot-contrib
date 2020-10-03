@@ -20,7 +20,7 @@ namespace OxyPlot.Wpf
     /// Represents a control that displays a <see cref="PlotModel" />.
     /// </summary>
     /// <remarks>This file contains dependency properties used for defining the Plot in XAML. These properties are only used when Model is <c>null</c>. In this case an internal PlotModel is created and the dependency properties are copied from the control to the internal PlotModel.</remarks>
-    public partial class Plot
+    public partial class Plot : PlotView
     {
         /// <summary>
         /// Identifies the <see cref="Culture"/> dependency property.

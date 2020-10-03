@@ -21,12 +21,12 @@ namespace OxyPlot.Wpf
     /// </summary>
     [ContentProperty("Series")]
     [TemplatePart(Name = PartGrid, Type = typeof(Grid))]
-    public partial class Plot : PlotView
+    public partial class Plot : PlotView, IPlotView
     {
         /// <summary>
         /// The internal model.
         /// </summary>
-        private readonly PlotModel internalModel;
+        private PlotModel internalModel => ActualModel;
 
         /// <summary>
         /// The default controller.
@@ -58,8 +58,9 @@ namespace OxyPlot.Wpf
             this.legends.CollectionChanged += this.OnAnnotationsChanged;
 
             this.defaultController = new PlotController();
-            this.internalModel = new PlotModel();
-            ((IPlotModel)this.internalModel).AttachPlotView(this);
+            var plot = new PlotModel();
+            ((IPlotModel)plot).AttachPlotView(this);
+            this.Model = plot;
         }
 
         /// <summary>
@@ -121,12 +122,24 @@ namespace OxyPlot.Wpf
             }
         }
 
+        /// <inheritdoc />
+        public new void InvalidatePlot(bool updateData)
+        {
+            this.UpdateModel(updateData);
+            base.InvalidatePlot(updateData);
+        }
+
+        void IPlotView.InvalidatePlot(bool updateData)
+        {
+            InvalidatePlot(updateData);
+        }
+
         /// <summary>
         /// Called when the visual appearance is changed.
         /// </summary>
         protected void OnAppearanceChanged()
         {
-            this.InvalidatePlot(false);
+            this.InvalidatePlot(true);
         }
 
         /// <summary>
@@ -192,6 +205,8 @@ namespace OxyPlot.Wpf
                     this.RemoveLogicalChild(item);
                 }
             }
+
+            this.OnAppearanceChanged();
         }
 
         /// <summary>
