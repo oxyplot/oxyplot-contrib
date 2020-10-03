@@ -11,6 +11,7 @@ namespace WorldStatisticsDemo
 
     using OxyPlot;
     using OxyPlot.Axes;
+    using OxyPlot.Legends;
     using OxyPlot.Series;
 
     /// <summary>
@@ -49,7 +50,7 @@ namespace WorldStatisticsDemo
 
         private void UpdatePlot()
         {
-            var pm = new PlotModel { Title = this.year.ToString(), Subtitle = "data from gapminder.org", LegendPosition = LegendPosition.RightBottom };
+            var pm = new PlotModel { Title = this.year.ToString(), Subtitle = "data from gapminder.org" };
             var ss = new ScatterSeries
             {
                 MarkerType = MarkerType.Circle,
@@ -106,6 +107,12 @@ namespace WorldStatisticsDemo
 
             pm.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = 19, Maximum = 87, Title = "Life expectancy (years)" });
             pm.Axes.Add(new LogarithmicAxis { Position = AxisPosition.Bottom, Title = "Income per person (GDP/capita, PPP$ inflation-adjusted)", Minimum = 200, Maximum = 90000 });
+
+            pm.Legends.Add(new Legend()
+            {
+                LegendPosition = LegendPosition.RightBottom,
+            });
+
             PlotModel = pm;
         }
 

@@ -14,6 +14,7 @@ namespace OxyPlot.Wpf.Tests
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Linq;
+    using System.Text;
     using System.Windows;
     using System.Windows.Media;
 
@@ -64,6 +65,8 @@ namespace OxyPlot.Wpf.Tests
         /// <param name="testType1">Type of the assertion.</param>
         public static void PropertiesAreEqual(object o1, object o2, Type testType1 = null)
         {
+            var message = new StringBuilder();
+
             if (testType1 == null)
             {
                 testType1 = o1.GetType();
@@ -94,7 +97,7 @@ namespace OxyPlot.Wpf.Tests
                 var pd2 = p2[propertyName];
                 if (pd2 == null)
                 {
-                    Console.WriteLine(@"{0}: missing in {1}", propertyName, o2.GetType());
+                    message.AppendFormat("{0}: missing in {1}\n", propertyName, o2.GetType());
                     continue;
                 }
 
@@ -105,7 +108,7 @@ namespace OxyPlot.Wpf.Tests
                 var type2 = v2 != null ? v2.GetType() : null;
                 if (!AreEqual(type1, type2))
                 {
-                    Console.WriteLine(@"{0}: {1} / {2}", pd1.Name, type1, type2);
+                    message.AppendFormat("{0}: {1} / {2}\n", pd1.Name, type1, type2);
                 }
 
                 var list1 = v1 as IList;
@@ -114,7 +117,7 @@ namespace OxyPlot.Wpf.Tests
                 {
                     if (list1.Count != list2.Count)
                     {
-                        Console.WriteLine(@"{0}: {1} / {2}", pd1.Name, list1.Count, list2.Count);
+                        message.AppendFormat("{0}: {1} / {2}\n", pd1.Name, list1.Count, list2.Count);
                         result = false;
                         continue;
                     }
@@ -123,7 +126,7 @@ namespace OxyPlot.Wpf.Tests
                     {
                         if (!AreEqual(list1[i], list2[i]))
                         {
-                            Console.WriteLine(@"{0}[{1}]: {2} / {3}", pd1.Name, i, list1[i], list2[i]);
+                            message.AppendFormat("{0}[{1}]: {2} / {3}\n", pd1.Name, i, list1[i], list2[i]);
                             result = false;
                         }
                     }
@@ -141,11 +144,16 @@ namespace OxyPlot.Wpf.Tests
                     continue;
                 }
 
-                Console.WriteLine(@"{0}: {1} / {2}", pd1.Name, v1, v2);
+                message.AppendFormat("{0}: {1} / {2}\n", pd1.Name, v1, v2);
                 result = false;
             }
 
-            Assert.IsTrue(result);
+            if (!result)
+            {
+                var msg = message.ToString();
+                Console.WriteLine(msg);
+                Assert.Fail(msg);
+            }
         }
 
         /// <summary>

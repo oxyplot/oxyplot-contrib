@@ -8,6 +8,7 @@ namespace LegendsDemo
 {
     using System;
     using OxyPlot;
+    using OxyPlot.Legends;
     using OxyPlot.Series;
 
     using PropertyTools.DataAnnotations;
@@ -152,16 +153,6 @@ namespace LegendsDemo
             var newModel = new PlotModel
             {
                 Title = "LineSeries",
-                LegendBorder = OxyColors.Black,
-                LegendBackground = OxyColor.FromAColor(200, OxyColors.White),
-                LegendPosition = this.LegendPosition,
-                LegendPlacement = this.LegendPlacement,
-                LegendOrientation = this.LegendOrientation,
-                LegendItemOrder = this.LegendItemOrder,
-                LegendItemAlignment = this.LegendItemAlignment,
-                LegendSymbolPlacement = this.LegendSymbolPlacement,
-                LegendMaxWidth = this.LegendMaxWidth,
-                LegendMaxHeight = this.LegendMaxHeight
             };
 
             for (int i = 1; i <= n; i++)
@@ -171,6 +162,23 @@ namespace LegendsDemo
                 for (double x = 0; x < 2 * Math.PI; x += 0.1)
                     s.Points.Add(new DataPoint(x, Math.Sin(x * i) / i + i));
             }
+
+            var newLegend = new Legend()
+            {
+                LegendBorder = OxyColors.Black,
+                LegendBackground = OxyColor.FromAColor(200, OxyColors.White),
+                LegendPosition = this.LegendPosition,
+                LegendPlacement = this.LegendPlacement,
+                LegendOrientation = this.LegendOrientation,
+                LegendItemOrder = this.LegendItemOrder,
+                LegendItemAlignment = this.LegendItemAlignment,
+                LegendSymbolPlacement = this.LegendSymbolPlacement,
+                LegendMaxWidth = this.LegendMaxWidth,
+                LegendMaxHeight = this.LegendMaxHeight,
+            };
+
+            newModel.Legends.Add(newLegend);
+
             return newModel;
         }
     }

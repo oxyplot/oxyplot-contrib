@@ -3,13 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
         xmlns:ColorBindingDemo="clr-namespace:ColorBindingDemo"
         xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf"
+        xmlns:oxys="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf.Shared"
         xmlns:contrib="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Contrib.Wpf"
         Title="ColorBindingDemo" Height="480" Width="640">
     <Window.DataContext>
         <ColorBindingDemo:MainViewModel/>
     </Window.DataContext>
     <Window.Resources>
-        <oxy:OxyColorConverter x:Key="OxyColorConverter"/>
+        <oxys:OxyColorConverter x:Key="OxyColorConverter"/>
     </Window.Resources>
         <DockPanel>
         <Menu DockPanel.Dock="Top">

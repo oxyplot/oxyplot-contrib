@@ -55,6 +55,7 @@ namespace OxyPlot.Wpf
             this.series.CollectionChanged += this.OnSeriesChanged;
             this.axes.CollectionChanged += this.OnAxesChanged;
             this.annotations.CollectionChanged += this.OnAnnotationsChanged;
+            this.legends.CollectionChanged += this.OnAnnotationsChanged;
 
             this.defaultController = new PlotController();
             this.internalModel = new PlotModel();
@@ -94,6 +95,11 @@ namespace OxyPlot.Wpf
                 {
                     yield return s;
                 }
+
+                foreach (var legend in this.Legends)
+                {
+                    yield return legend;
+                }
             }
         }
 
@@ -107,6 +113,7 @@ namespace OxyPlot.Wpf
             this.SynchronizeSeries();
             this.SynchronizeAxes();
             this.SynchronizeAnnotations();
+            this.SynchronizeLegends();
 
             if (this.ActualModel != null)
             {
