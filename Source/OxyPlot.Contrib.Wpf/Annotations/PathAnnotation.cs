@@ -38,12 +38,6 @@ namespace OxyPlot.Wpf
             "ClipByYAxis", typeof(bool), typeof(PathAnnotation), new UIPropertyMetadata(true, AppearanceChanged));
 
         /// <summary>
-        /// Identifies the <see cref="ClipText"/> dependency property.
-        /// </summary>
-        public static readonly DependencyProperty ClipTextProperty =
-            DependencyProperty.Register("ClipText", typeof(bool), typeof(PathAnnotation), new PropertyMetadata(true));
-
-        /// <summary>
         /// Identifies the <see cref="LineJoin"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LineJoinProperty = DependencyProperty.Register(
@@ -121,23 +115,6 @@ namespace OxyPlot.Wpf
             set
             {
                 this.SetValue(ClipByYAxisProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the text should be clipped within the plot area.
-        /// </summary>
-        /// <value><c>true</c> if text should be clipped; otherwise, <c>false</c>.</value>
-        public bool ClipText
-        {
-            get
-            {
-                return (bool)this.GetValue(ClipTextProperty);
-            }
-
-            set
-            {
-                this.SetValue(ClipTextProperty, value);
             }
         }
 
@@ -291,7 +268,6 @@ namespace OxyPlot.Wpf
             a.TextLinePosition = this.TextLinePosition;
             a.TextOrientation = this.TextOrientation;
             a.TextMargin = this.TextMargin;
-            a.ClipText = this.ClipText;
         }
     }
 }

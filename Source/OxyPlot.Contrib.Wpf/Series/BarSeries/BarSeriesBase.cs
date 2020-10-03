@@ -105,7 +105,7 @@ namespace OxyPlot.Wpf
         /// </summary>
         static BarSeriesBase()
         {
-            TrackerFormatStringProperty.OverrideMetadata(typeof(BarSeriesBase), new PropertyMetadata(OxyPlot.Series.BarSeriesBase.DefaultTrackerFormatString, AppearanceChanged));
+            TrackerFormatStringProperty.OverrideMetadata(typeof(BarSeriesBase), new PropertyMetadata(OxyPlot.Series.BarSeries.DefaultTrackerFormatString, AppearanceChanged));
         }
 
         /// <summary>
@@ -323,7 +323,7 @@ namespace OxyPlot.Wpf
         protected override void SynchronizeProperties(OxyPlot.Series.Series series)
         {
             base.SynchronizeProperties(series);
-            var s = (OxyPlot.Series.BarSeriesBase)series;
+            var s = (OxyPlot.Series.BarSeries)series;
             s.BaseValue = this.BaseValue;
             s.ColorField = this.ColorField;
             s.FillColor = this.FillColor.ToOxyColor();

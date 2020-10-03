@@ -21,7 +21,7 @@ namespace OxyPlot.Wpf
     /// </summary>
     [ContentProperty("Series")]
     [TemplatePart(Name = PartGrid, Type = typeof(Grid))]
-    public partial class Plot : PlotBase
+    public partial class Plot : PlotView
     {
         /// <summary>
         /// The internal model.
@@ -73,30 +73,6 @@ namespace OxyPlot.Wpf
         }
 
         /// <summary>
-        /// Gets the actual model.
-        /// </summary>
-        /// <value>The actual model.</value>
-        public override PlotModel ActualModel
-        {
-            get
-            {
-                return this.internalModel;
-            }
-        }
-
-        /// <summary>
-        /// Gets the actual Plot controller.
-        /// </summary>
-        /// <value>The actual Plot controller.</value>
-        public override IPlotController ActualController
-        {
-            get
-            {
-                return this.defaultController;
-            }
-        }
-
-        /// <summary>
         /// Gets an enumerator for logical child elements of this element.
         /// </summary>
         protected override System.Collections.IEnumerator LogicalChildren
@@ -124,14 +100,17 @@ namespace OxyPlot.Wpf
         /// Updates the model. If Model==<c>null</c>, an internal model will be created. The ActualModel.Update will be called (updates all series data).
         /// </summary>
         /// <param name="updateData">if set to <c>true</c> , all data collections will be updated.</param>
-        protected override void UpdateModel(bool updateData = true)
+        protected virtual void UpdateModel(bool updateData = true)
         {
             this.SynchronizeProperties();
             this.SynchronizeSeries();
             this.SynchronizeAxes();
             this.SynchronizeAnnotations();
 
-            base.UpdateModel(updateData);
+            if (this.ActualModel != null)
+            {
+                ((IPlotModel)this.ActualModel).Update(updateData);
+            }
         }
 
         /// <summary>
@@ -245,37 +224,6 @@ namespace OxyPlot.Wpf
             m.RenderingDecorator = this.RenderingDecorator;
 
             m.AxisTierDistance = this.AxisTierDistance;
-
-            m.IsLegendVisible = this.IsLegendVisible;
-            m.LegendTextColor = this.LegendTextColor.ToOxyColor();
-            m.LegendTitle = this.LegendTitle;
-            m.LegendTitleColor = this.LegendTitleColor.ToOxyColor();
-            m.LegendTitleFont = this.LegendTitleFont;
-            m.LegendTitleFontSize = this.LegendTitleFontSize;
-            m.LegendTitleFontWeight = this.LegendTitleFontWeight.ToOpenTypeWeight();
-            m.LegendFont = this.LegendFont;
-            m.LegendFontSize = this.LegendFontSize;
-            m.LegendFontWeight = this.LegendFontWeight.ToOpenTypeWeight();
-            m.LegendSymbolLength = this.LegendSymbolLength;
-            m.LegendSymbolMargin = this.LegendSymbolMargin;
-            m.LegendPadding = this.LegendPadding;
-            m.LegendColumnSpacing = this.LegendColumnSpacing;
-            m.LegendItemSpacing = this.LegendItemSpacing;
-            m.LegendLineSpacing = this.LegendLineSpacing;
-            m.LegendMargin = this.LegendMargin;
-            m.LegendMaxHeight = this.LegendMaxHeight;
-            m.LegendMaxWidth = this.LegendMaxWidth;
-
-            m.LegendBackground = this.LegendBackground.ToOxyColor();
-            m.LegendBorder = this.LegendBorder.ToOxyColor();
-            m.LegendBorderThickness = this.LegendBorderThickness;
-
-            m.LegendPlacement = this.LegendPlacement;
-            m.LegendPosition = this.LegendPosition;
-            m.LegendOrientation = this.LegendOrientation;
-            m.LegendItemOrder = this.LegendItemOrder;
-            m.LegendItemAlignment = this.LegendItemAlignment.ToHorizontalAlignment();
-            m.LegendSymbolPlacement = this.LegendSymbolPlacement;
 
             m.PlotAreaBackground = this.PlotAreaBackground.ToOxyColor();
             m.PlotAreaBorderColor = this.PlotAreaBorderColor.ToOxyColor();
