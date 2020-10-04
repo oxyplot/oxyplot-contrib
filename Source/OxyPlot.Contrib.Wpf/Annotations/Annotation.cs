@@ -20,8 +20,8 @@ namespace OxyPlot.Wpf
     {
         static Annotation()
         {
-            WidthProperty.OverrideMetadata(typeof(Annotation), new FrameworkPropertyMetadata(0.0, AppearanceChanged));
-            HeightProperty.OverrideMetadata(typeof(Annotation), new FrameworkPropertyMetadata(0.0, AppearanceChanged));
+            WidthProperty.OverrideMetadata(typeof(Annotation), new FrameworkPropertyMetadata(double.NaN, AppearanceChanged));
+            HeightProperty.OverrideMetadata(typeof(Annotation), new FrameworkPropertyMetadata(double.NaN, AppearanceChanged));
         }
 
         /// <summary>

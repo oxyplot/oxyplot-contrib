@@ -28,13 +28,13 @@ namespace OxyPlot.Wpf
         /// Identifies the <see cref="MinimumSegmentLength"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty MinimumSegmentLengthProperty =
-            DependencyProperty.Register("MinimumSegmentLength", typeof(double), typeof(PolylineAnnotation), new PropertyMetadata(0d));
+            DependencyProperty.Register("MinimumSegmentLength", typeof(double), typeof(PolylineAnnotation), new PropertyMetadata(0d, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="Points"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty PointsProperty =
-            DependencyProperty.Register("Points", typeof(IList<DataPoint>), typeof(PolylineAnnotation), new PropertyMetadata(new List<DataPoint>()));
+            DependencyProperty.Register("Points", typeof(IList<DataPoint>), typeof(PolylineAnnotation), new PropertyMetadata(new List<DataPoint>(), DataChanged));
 
         /// <summary>
         /// Initializes static members of the <see cref="PolylineAnnotation"/> class.
