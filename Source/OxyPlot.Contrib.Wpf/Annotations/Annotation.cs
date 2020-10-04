@@ -18,6 +18,12 @@ namespace OxyPlot.Wpf
     /// </summary>
     public abstract class Annotation : FrameworkElement
     {
+        static Annotation()
+        {
+            WidthProperty.OverrideMetadata(typeof(Annotation), new FrameworkPropertyMetadata(0.0, AppearanceChanged));
+            HeightProperty.OverrideMetadata(typeof(Annotation), new FrameworkPropertyMetadata(0.0, AppearanceChanged));
+        }
+
         /// <summary>
         /// Identifies the <see cref="Layer"/> dependency property.
         /// </summary>

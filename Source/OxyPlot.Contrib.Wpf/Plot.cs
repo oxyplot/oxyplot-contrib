@@ -107,7 +107,7 @@ namespace OxyPlot.Wpf
         /// <summary>
         /// Updates the model. If Model==<c>null</c>, an internal model will be created. The ActualModel.Update will be called (updates all series data).
         /// </summary>
-        /// <param name="updateData">if set to <c>true</c> , all data collections will be updated.</param>
+        /// <param name="updateData">if set to <c>true</c>, all data collections will be updated.</param>
         protected virtual void UpdateModel(bool updateData = true)
         {
             this.SynchronizeProperties();
@@ -139,7 +139,9 @@ namespace OxyPlot.Wpf
         /// </summary>
         protected void OnAppearanceChanged()
         {
-            this.InvalidatePlot(true);
+            // should be false, and we have a seperate one for data/elements changed
+            this.UpdateModel(true);
+            base.InvalidatePlot(true);
         }
 
         /// <summary>

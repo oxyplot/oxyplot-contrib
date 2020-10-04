@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Plot.cs" company="OxyPlot">
+// <copyright file="Legend.cs" company="OxyPlot">
 //   Copyright (c) 2014 OxyPlot contributors
 // </copyright>
 // <summary>
-//   Represents a control that displays a <see cref="PlotModel" />.
+//   Represents a control that displays a <see cref="OxyPlot.Legends.Legend" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
