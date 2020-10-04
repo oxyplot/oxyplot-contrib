@@ -6,12 +6,8 @@ version: '2.1.0-unstable.{build}'
 pull_requests:
   do_not_increment_build_number: true
 
-install:
-  - cinst gitversion.portable -y
-
 before_build:
   - nuget restore Source/OxyPlot.Contrib.sln
-  - gitversion /l console /output buildserver /updateAssemblyInfo
 
 build_script:
   - msbuild Source/OxyPlot.Contrib.sln "/p:Platform=Any CPU" "/p:Configuration=Release" "/p:Version=%APPVEYOR_BUILD_VERSION%"
