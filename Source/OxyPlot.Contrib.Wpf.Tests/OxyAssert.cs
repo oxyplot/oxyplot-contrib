@@ -16,6 +16,7 @@ namespace OxyPlot.Wpf.Tests
     using System.Linq;
     using System.Text;
     using System.Windows;
+    using System.Windows.Interop;
     using System.Windows.Media;
 
     using NUnit.Framework;
@@ -148,10 +149,15 @@ namespace OxyPlot.Wpf.Tests
                 result = false;
             }
 
+            var msg = message.ToString();
+
+            if (msg.Length > 0)
+            {
+                Console.WriteLine(msg);
+            }
+
             if (!result)
             {
-                var msg = message.ToString();
-                Console.WriteLine(msg);
                 Assert.Fail(msg);
             }
         }
