@@ -9,6 +9,7 @@
 
 namespace OxyPlot.Wpf
 {
+    using OxyPlot.Contrib.Wpf;
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
     using System.Linq;
@@ -21,7 +22,7 @@ namespace OxyPlot.Wpf
     /// </summary>
     [ContentProperty("Series")]
     [TemplatePart(Name = PartGrid, Type = typeof(Grid))]
-    public partial class Plot : PlotView, IPlotView
+    public partial class Plot : PlotView, IPlot
     {
         /// <summary>
         /// The internal model.
@@ -122,24 +123,34 @@ namespace OxyPlot.Wpf
             }
         }
 
-        /// <inheritdoc />
-        public new void InvalidatePlot(bool updateData)
-        {
-            this.UpdateModel(updateData);
-            base.InvalidatePlot(updateData);
-        }
-
-        void IPlotView.InvalidatePlot(bool updateData)
-        {
-            InvalidatePlot(updateData);
-        }
-
         /// <summary>
         /// Called when the visual appearance is changed.
         /// </summary>
         protected void OnAppearanceChanged()
         {
-            // should be false, and we have a seperate one for data/elements changed
+            this.UpdateModel(false);
+            base.InvalidatePlot(false);
+        }
+
+        /// <summary>
+        /// Called when the visual appearance is changed.
+        /// </summary>
+        protected void OnDataChanged()
+        {
+            this.UpdateModel(true);
+            base.InvalidatePlot(true);
+        }
+
+        void IPlot.ElementAppearanceChanged(object element)
+        {
+            // TODO: determine type of element to perform a more fine-grained update
+            this.UpdateModel(false);
+            base.InvalidatePlot(false);
+        }
+
+        void IPlot.ElementDataChanged(object element)
+        {
+            // TODO: determine type of element to perform a more fine-grained update
             this.UpdateModel(true);
             base.InvalidatePlot(true);
         }

@@ -9,6 +9,7 @@
 
 namespace OxyPlot.Wpf
 {
+    using OxyPlot.Contrib.Wpf;
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
     using System.Linq;
@@ -90,11 +91,7 @@ namespace OxyPlot.Wpf
         /// </summary>
         protected void OnVisualChanged()
         {
-            var pc = this.Parent as IPlotView;
-            if (pc != null)
-            {
-                pc.InvalidatePlot(false);
-            }
+            (((Legend)this).Parent as IPlot)?.ElementDataChanged(this);
         }
 
         /// <summary>

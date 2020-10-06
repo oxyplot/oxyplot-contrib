@@ -12,6 +12,7 @@ namespace OxyPlot.Wpf
     using System.Windows;
 
     using OxyPlot.Annotations;
+    using OxyPlot.Contrib.Wpf;
 
     /// <summary>
     /// The annotation base class.
@@ -209,11 +210,7 @@ namespace OxyPlot.Wpf
         /// <param name="e">The <see cref="DependencyPropertyChangedEventArgs" /> instance containing the event data.</param>
         protected static void AppearanceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var pc = ((Annotation)d).Parent as IPlotView;
-            if (pc != null)
-            {
-                pc.InvalidatePlot(false);
-            }
+            (((Annotation)d).Parent as IPlot)?.ElementAppearanceChanged(d);
         }
 
         /// <summary>
@@ -223,11 +220,7 @@ namespace OxyPlot.Wpf
         /// <param name="e">The <see cref="DependencyPropertyChangedEventArgs" /> instance containing the event data.</param>
         protected static void DataChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var pc = ((Annotation)d).Parent as IPlotView;
-            if (pc != null)
-            {
-                pc.InvalidatePlot();
-            }
+            (((Annotation)d).Parent as IPlot)?.ElementDataChanged(d);
         }
     }
 }

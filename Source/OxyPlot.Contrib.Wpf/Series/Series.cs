@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace OxyPlot.Wpf
 {
+    using OxyPlot.Contrib.Wpf;
     using System;
     using System.Collections;
     using System.Collections.Specialized;
@@ -217,11 +218,7 @@ namespace OxyPlot.Wpf
         /// </summary>
         protected void OnDataChanged()
         {
-            var pc = this.Parent as IPlotView;
-            if (pc != null)
-            {
-                pc.InvalidatePlot();
-            }
+            (((Series)this).Parent as IPlot)?.ElementDataChanged(this);
         }
 
         /// <summary>
@@ -241,11 +238,7 @@ namespace OxyPlot.Wpf
         /// </summary>
         protected void OnVisualChanged()
         {
-            var pc = this.Parent as IPlotView;
-            if (pc != null)
-            {
-                pc.InvalidatePlot(false);
-            }
+            (((Series)this).Parent as IPlot)?.ElementAppearanceChanged(this);
         }
 
         /// <summary>

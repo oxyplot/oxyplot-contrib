@@ -9,6 +9,7 @@
 
 namespace OxyPlot.Wpf
 {
+    using OxyPlot.Contrib.Wpf;
     using System;
     using System.Windows;
     using System.Windows.Media;
@@ -1724,11 +1725,7 @@ namespace OxyPlot.Wpf
         /// </summary>
         protected void OnVisualChanged()
         {
-            var pc = this.Parent as IPlotView;
-            if (pc != null)
-            {
-                pc.InvalidatePlot(false);
-            }
+            (((Axis)this).Parent as IPlot)?.ElementAppearanceChanged(this);
         }
 
         /// <summary>
