@@ -1,0 +1,21 @@
+﻿<Window x:Class="HistogramSeriesDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf"
+        xmlns:contrib="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Contrib.Wpf" Title="HistogramSeriesDemo" Height="480" Width="640">
+    <TabControl>
+        <TabItem Header="Binding to PlotModel">
+            <oxy:PlotView Model="{Binding Model1}"/>
+        </TabItem>
+        <TabItem Header="Define plot in XAML">
+            <contrib:Plot Title="Histogram series (XAML)">
+                <contrib:Plot.Axes>
+                    <contrib:LinearAxis Position="Left" Title="Frequency" />
+                    <contrib:LinearAxis Position="Bottom" Title="Value" />
+                </contrib:Plot.Axes>
+                <contrib:Plot.Series>
+                    <contrib:HistogramSeries ItemsSource="{Binding Items}" StrokeThickness="1" />
+                </contrib:Plot.Series>
+            </contrib:Plot>
+        </TabItem>
+    </TabControl>
+</Window>

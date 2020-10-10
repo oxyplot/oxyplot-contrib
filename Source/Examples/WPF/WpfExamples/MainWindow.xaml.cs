@@ -75,7 +75,7 @@ namespace WpfExamples
                 {
                     if (args.Key == Key.F12)
                     {
-                        CreateThumbnail(window, 120, Path.Combine(@"..\..\Images\", example.ThumbnailFileName));
+                        CreateThumbnail(window, 120, Path.Combine(@"..\..\..\Images\", example.ThumbnailFileName));
                         MessageBox.Show(window, "Demo image updated.");
                         e.Handled = true;
                     }
