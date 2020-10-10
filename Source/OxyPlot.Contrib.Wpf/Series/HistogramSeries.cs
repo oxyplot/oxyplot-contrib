@@ -45,7 +45,7 @@ namespace OxyPlot.Wpf
             "StrokeThickness",
             typeof(double),
             typeof(HistogramSeries),
-            new PropertyMetadata(1.0, AppearanceChanged));
+            new PropertyMetadata(0.0, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LabelFormatString"/> dependency property.
@@ -63,7 +63,7 @@ namespace OxyPlot.Wpf
             "LabelMargin",
             typeof(double),
             typeof(HistogramSeries),
-            new PropertyMetadata(2.0, AppearanceChanged));
+            new PropertyMetadata(0.0, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LabelPlacement"/> dependency property.
