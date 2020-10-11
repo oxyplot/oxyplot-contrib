@@ -9,6 +9,7 @@
 
 namespace OxyPlot.Wpf
 {
+    using OxyPlot.Contrib.Wpf;
     using System;
     using System.Windows;
     using System.Windows.Media;
@@ -86,6 +87,12 @@ namespace OxyPlot.Wpf
         /// </summary>
         public static readonly DependencyProperty ClipTitleProperty = DependencyProperty.Register(
             "ClipTitle", typeof(bool), typeof(Axis), new UIPropertyMetadata(true, AppearanceChanged));
+
+        /// <summary>
+        /// Identifies the <see cref="CropGridlines"/> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty CropGridlinesProperty = DependencyProperty.Register(
+            "CropGridlines", typeof(bool), typeof(Axis), new UIPropertyMetadata(false, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="EndPosition"/> dependency property.
@@ -253,6 +260,30 @@ namespace OxyPlot.Wpf
             "Maximum", typeof(double), typeof(Axis), new PropertyMetadata(double.NaN, AppearanceChanged));
 
         /// <summary>
+        /// Identifies the <see cref="MaximumMajorStep"/> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty MaximumMajorStepProperty = DependencyProperty.Register(
+            "MaximumMajorStep", typeof(double), typeof(Axis), new PropertyMetadata(0.0, AppearanceChanged));
+
+        /// <summary>
+        /// Identifies the <see cref="MinimumMajorStep"/> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty MinimumMajorStepProperty = DependencyProperty.Register(
+            "MinimumMajorStep", typeof(double), typeof(Axis), new PropertyMetadata(0.0, AppearanceChanged));
+
+        /// <summary>
+        /// Identifies the <see cref="MaximumDataMargin"/> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty MaximumDataMarginProperty = DependencyProperty.Register(
+            "MaximumDataMargin", typeof(double), typeof(Axis), new PropertyMetadata(0.0, AppearanceChanged));
+
+        /// <summary>
+        /// Identifies the <see cref="MaximumMargin"/> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty MaximumMarginProperty = DependencyProperty.Register(
+            "MaximumMargin", typeof(double), typeof(Axis), new PropertyMetadata(0.0, AppearanceChanged));
+
+        /// <summary>
         /// Identifies the <see cref="MaximumRange"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty MaximumRangeProperty = DependencyProperty.Register(
@@ -269,6 +300,24 @@ namespace OxyPlot.Wpf
         /// </summary>
         public static readonly DependencyProperty MinimumProperty = DependencyProperty.Register(
             "Minimum", typeof(double), typeof(Axis), new PropertyMetadata(double.NaN, AppearanceChanged));
+
+        /// <summary>
+        /// Identifies the <see cref="MinimumMinorStep"/> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty MinimumMinorStepProperty = DependencyProperty.Register(
+            "MinimumMinorStep", typeof(double), typeof(Axis), new PropertyMetadata(0.0, AppearanceChanged));
+
+        /// <summary>
+        /// Identifies the <see cref="MinimumDataMargin"/> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty MinimumDataMarginProperty = DependencyProperty.Register(
+            "MinimumDataMargin", typeof(double), typeof(Axis), new PropertyMetadata(0.0, AppearanceChanged));
+
+        /// <summary>
+        /// Identifies the <see cref="MinimumMargin"/> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty MinimumMarginProperty = DependencyProperty.Register(
+            "MinimumMargin", typeof(double), typeof(Axis), new PropertyMetadata(0.0, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="MinimumRange"/> dependency property.
@@ -365,6 +414,12 @@ namespace OxyPlot.Wpf
             "TicklineColor", typeof(Color), typeof(Axis), new PropertyMetadata(Colors.Black, AppearanceChanged));
 
         /// <summary>
+        /// Identifies the <see cref="MinorTicklineColor"/> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty MinorTicklineColorProperty = DependencyProperty.Register(
+            "MinorTicklineColor", typeof(Color), typeof(Axis), new PropertyMetadata(OxyColors.Automatic.ToColor(), AppearanceChanged));
+
+        /// <summary>
         /// Identifies the <see cref="TitleClippingLength"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty TitleClippingLengthProperty =
@@ -427,6 +482,15 @@ namespace OxyPlot.Wpf
         public static readonly DependencyProperty UseSuperExponentialFormatProperty =
             DependencyProperty.Register(
                 "UseSuperExponentialFormat", typeof(bool), typeof(Axis), new PropertyMetadata(false, AppearanceChanged));
+
+        /// <summary>
+        /// Identifies the <see cref="EdgeRenderingMode"/> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty EdgeRenderingModeProperty = DependencyProperty.Register(
+            "EdgeRenderingMode",
+            typeof(EdgeRenderingMode),
+            typeof(Axis),
+            new PropertyMetadata(EdgeRenderingMode.Automatic, AppearanceChanged));
 
         /// <summary>
         /// Gets or sets the internal axis.
@@ -581,9 +645,9 @@ namespace OxyPlot.Wpf
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether [clip title].
+        /// Gets or sets a value indicating whether to clip the axis title.
         /// </summary>
-        /// <value><c>true</c> if [clip title]; otherwise, <c>false</c> .</value>
+        /// <value><c>true</c> if the title should be clipped; otherwise, <c>false</c> .</value>
         public bool ClipTitle
         {
             get
@@ -594,6 +658,23 @@ namespace OxyPlot.Wpf
             set
             {
                 this.SetValue(ClipTitleProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether gridlines should be cropped.
+        /// </summary>
+        /// <value><c>true</c> if gridlines should be cropped; otherwise, <c>false</c> .</value>
+        public bool CropGridlines
+        {
+            get
+            {
+                return (bool)this.GetValue(CropGridlinesProperty);
+            }
+
+            set
+            {
+                this.SetValue(CropGridlinesProperty, value);
             }
         }
 
@@ -999,6 +1080,70 @@ namespace OxyPlot.Wpf
         }
 
         /// <summary>
+        /// Gets or sets MaximumMajorStep.
+        /// </summary>
+        public double MaximumMajorStep
+        {
+            get
+            {
+                return (double)this.GetValue(MaximumMajorStepProperty);
+            }
+
+            set
+            {
+                this.SetValue(MaximumMajorStepProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets MinimumMajorStep.
+        /// </summary>
+        public double MinimumMajorStep
+        {
+            get
+            {
+                return (double)this.GetValue(MinimumMajorStepProperty);
+            }
+
+            set
+            {
+                this.SetValue(MinimumMajorStepProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets MaximumDataMargin.
+        /// </summary>
+        public double MaximumDataMargin
+        {
+            get
+            {
+                return (double)this.GetValue(MaximumDataMarginProperty);
+            }
+
+            set
+            {
+                this.SetValue(MaximumDataMarginProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets MaximumMargin.
+        /// </summary>
+        public double MaximumMargin
+        {
+            get
+            {
+                return (double)this.GetValue(MaximumMarginProperty);
+            }
+
+            set
+            {
+                this.SetValue(MaximumMarginProperty, value);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets MaximumRange.
         /// </summary>
         public double MaximumRange
@@ -1011,22 +1156,6 @@ namespace OxyPlot.Wpf
             set
             {
                 this.SetValue(MaximumRangeProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets Minimum.
-        /// </summary>
-        public double Minimum
-        {
-            get
-            {
-                return (double)this.GetValue(MinimumProperty);
-            }
-
-            set
-            {
-                this.SetValue(MinimumProperty, value);
             }
         }
 
@@ -1059,6 +1188,70 @@ namespace OxyPlot.Wpf
             set
             {
                 this.SetValue(MinimumRangeProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets Minimum.
+        /// </summary>
+        public double Minimum
+        {
+            get
+            {
+                return (double)this.GetValue(MinimumProperty);
+            }
+
+            set
+            {
+                this.SetValue(MinimumProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets MinimumMinorStep.
+        /// </summary>
+        public double MinimumMinorStep
+        {
+            get
+            {
+                return (double)this.GetValue(MinimumMinorStepProperty);
+            }
+
+            set
+            {
+                this.SetValue(MinimumMinorStepProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets MinimumDataMargin.
+        /// </summary>
+        public double MinimumDataMargin
+        {
+            get
+            {
+                return (double)this.GetValue(MinimumDataMarginProperty);
+            }
+
+            set
+            {
+                this.SetValue(MinimumDataMarginProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets MinimumMargin.
+        /// </summary>
+        public double MinimumMargin
+        {
+            get
+            {
+                return (double)this.GetValue(MinimumMarginProperty);
+            }
+
+            set
+            {
+                this.SetValue(MinimumMarginProperty, value);
             }
         }
 
@@ -1272,6 +1465,22 @@ namespace OxyPlot.Wpf
         }
 
         /// <summary>
+        /// Gets or sets the MinorTick line color.
+        /// </summary>
+        public Color MinorTicklineColor
+        {
+            get
+            {
+                return (Color)this.GetValue(MinorTicklineColorProperty);
+            }
+
+            set
+            {
+                this.SetValue(MinorTicklineColorProperty, value);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the title.
         /// </summary>
         public string Title
@@ -1437,6 +1646,22 @@ namespace OxyPlot.Wpf
         }
 
         /// <summary>
+        /// Gets or sets the <see cref="OxyPlot.EdgeRenderingMode"/> for the annotation.
+        /// </summary>
+        public EdgeRenderingMode EdgeRenderingMode
+        {
+            get
+            {
+                return (EdgeRenderingMode)this.GetValue(EdgeRenderingModeProperty);
+            }
+
+            set
+            {
+                this.SetValue(EdgeRenderingModeProperty, value);
+            }
+        }
+
+        /// <summary>
         /// Creates the model.
         /// </summary>
         /// <returns>An axis object.</returns>
@@ -1500,11 +1725,7 @@ namespace OxyPlot.Wpf
         /// </summary>
         protected void OnVisualChanged()
         {
-            var pc = this.Parent as IPlotView;
-            if (pc != null)
-            {
-                pc.InvalidatePlot(false);
-            }
+            (((Axis)this).Parent as IPlot)?.ElementAppearanceChanged(this);
         }
 
         /// <summary>
@@ -1523,6 +1744,7 @@ namespace OxyPlot.Wpf
             a.AxisTitleDistance = this.AxisTitleDistance;
             a.AxisTickToLabelDistance = this.AxisTickToLabelDistance;
             a.ClipTitle = this.ClipTitle;
+            a.CropGridlines = this.CropGridlines;
             a.EndPosition = this.EndPosition;
             a.ExtraGridlineColor = this.ExtraGridlineColor.ToOxyColor();
             a.ExtraGridlineStyle = this.ExtraGridlineStyle;
@@ -1556,6 +1778,12 @@ namespace OxyPlot.Wpf
             a.MaximumRange = this.MaximumRange;
             a.MinimumPadding = this.MinimumPadding;
             a.MaximumPadding = this.MaximumPadding;
+            a.MinimumMajorStep = this.MinimumMajorStep;
+            a.MinimumMinorStep = this.MinimumMinorStep;
+            a.MinimumDataMargin = this.MinimumDataMargin;
+            a.MaximumDataMargin = this.MaximumDataMargin;
+            a.MinimumMargin = this.MinimumMargin;
+            a.MaximumMargin = this.MaximumMargin;
             a.Position = this.Position;
             a.PositionTier = this.PositionTier;
             a.PositionAtZeroCrossing = this.PositionAtZeroCrossing;
@@ -1576,6 +1804,7 @@ namespace OxyPlot.Wpf
             a.Unit = this.Unit;
             a.UseSuperExponentialFormat = this.UseSuperExponentialFormat;
             a.LabelFormatter = this.LabelFormatter;
+            a.EdgeRenderingMode = this.EdgeRenderingMode;
         }
     }
 }

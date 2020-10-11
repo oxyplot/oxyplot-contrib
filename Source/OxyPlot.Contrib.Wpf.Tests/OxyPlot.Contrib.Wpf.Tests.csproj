@@ -8,10 +8,6 @@
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
     <ItemGroup>
-        <ProjectReference Include="..\Examples\ExampleLibrary\ExampleLibrary.csproj" />
-        <ProjectReference Include="..\OxyPlot.Wpf.Tests\OxyPlot.Wpf.Tests.csproj" />
-        <ProjectReference Include="..\OxyPlot\OxyPlot.csproj" />
-        <ProjectReference Include="..\OxyPlot.Wpf\OxyPlot.Wpf.csproj" />
         <ProjectReference Include="..\OxyPlot.Contrib.Wpf\OxyPlot.Contrib.Wpf.csproj" />
     </ItemGroup>
     <ItemGroup>

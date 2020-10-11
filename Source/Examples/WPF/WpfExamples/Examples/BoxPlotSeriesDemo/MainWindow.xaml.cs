@@ -18,6 +18,7 @@ namespace BoxPlotSeriesDemo
 
     using OxyPlot;
     using OxyPlot.Axes;
+    using OxyPlot.Legends;
     using OxyPlot.Series;
 
     using WpfExamples;
@@ -43,7 +44,7 @@ namespace BoxPlotSeriesDemo
                             };
 
             // Create the plot model
-            var tmp = new PlotModel { Title = "BoxPlot series", LegendPlacement = LegendPlacement.Outside, LegendPosition = LegendPosition.RightTop, LegendOrientation = LegendOrientation.Vertical };
+            var tmp = new PlotModel { Title = "BoxPlot series" };
 
             // Add the axes, note that MinimumPadding and AbsoluteMinimum should be set on the value axis.
             tmp.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, MinimumPadding = 0.3, MaximumPadding = 0.3, AbsoluteMinimum = 0 });
@@ -51,6 +52,13 @@ namespace BoxPlotSeriesDemo
 
             // Add the series, note that the BarSeries are using the same ItemsSource as the CategoryAxis.
             tmp.Series.Add(new BoxPlotSeries { Title = "Values", ItemsSource = this.Items, Fill = Colors.LightBlue.ToOxyColor() });
+
+            tmp.Legends.Add(new Legend()
+            {
+                LegendPlacement = LegendPlacement.Outside,
+                LegendPosition = LegendPosition.RightTop,
+                LegendOrientation = LegendOrientation.Vertical,
+            });
 
             this.Model1 = tmp;
 

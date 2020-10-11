@@ -14,6 +14,7 @@ using OxyPlot;
 namespace BarSeriesDemo
 {
     using OxyPlot.Axes;
+    using OxyPlot.Legends;
     using OxyPlot.Series;
 
     using WpfExamples;
@@ -37,7 +38,7 @@ namespace BarSeriesDemo
                             };
 
             // Create the plot model
-            var tmp = new PlotModel { Title = "Bar series", LegendPlacement = LegendPlacement.Outside, LegendPosition = LegendPosition.RightTop, LegendOrientation = LegendOrientation.Vertical };
+            var tmp = new PlotModel { Title = "Bar series" };
 
             // Add the axes, note that MinimumPadding and AbsoluteMinimum should be set on the value axis.
             tmp.Axes.Add(new CategoryAxis { Position = AxisPosition.Left, ItemsSource = this.Items, LabelField = "Label" });
@@ -47,6 +48,13 @@ namespace BarSeriesDemo
             tmp.Series.Add(new BarSeries { Title = "2009", ItemsSource = this.Items, ValueField = "Value1" });
             tmp.Series.Add(new BarSeries { Title = "2010", ItemsSource = this.Items, ValueField = "Value2" });
             tmp.Series.Add(new BarSeries { Title = "2011", ItemsSource = this.Items, ValueField = "Value3" });
+
+            tmp.Legends.Add(new Legend()
+            {
+                LegendPlacement = LegendPlacement.Outside,
+                LegendPosition = LegendPosition.RightTop,
+                LegendOrientation = LegendOrientation.Vertical
+            });
 
             this.Model1 = tmp;
 

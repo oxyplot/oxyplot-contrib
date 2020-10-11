@@ -26,24 +26,6 @@ namespace OxyPlot.Wpf
             "Color", typeof(Color), typeof(PathAnnotation), new PropertyMetadata(Colors.Blue, AppearanceChanged));
 
         /// <summary>
-        /// Identifies the <see cref="ClipByXAxis"/> dependency property.
-        /// </summary>
-        public static readonly DependencyProperty ClipByXAxisProperty = DependencyProperty.Register(
-            "ClipByXAxis", typeof(bool), typeof(PathAnnotation), new UIPropertyMetadata(true, AppearanceChanged));
-
-        /// <summary>
-        /// Identifies the <see cref="ClipByYAxis"/> dependency property.
-        /// </summary>
-        public static readonly DependencyProperty ClipByYAxisProperty = DependencyProperty.Register(
-            "ClipByYAxis", typeof(bool), typeof(PathAnnotation), new UIPropertyMetadata(true, AppearanceChanged));
-
-        /// <summary>
-        /// Identifies the <see cref="ClipText"/> dependency property.
-        /// </summary>
-        public static readonly DependencyProperty ClipTextProperty =
-            DependencyProperty.Register("ClipText", typeof(bool), typeof(PathAnnotation), new PropertyMetadata(true));
-
-        /// <summary>
         /// Identifies the <see cref="LineJoin"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LineJoinProperty = DependencyProperty.Register(
@@ -89,57 +71,6 @@ namespace OxyPlot.Wpf
         /// </summary>
         public static readonly DependencyProperty TextLinePositionProperty = DependencyProperty.Register(
             "TextLinePosition", typeof(double), typeof(PathAnnotation), new UIPropertyMetadata(1.0, AppearanceChanged));
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to clip the annotation line by the X axis range.
-        /// </summary>
-        /// <value><c>true</c> if clipping by the X axis is enabled; otherwise, <c>false</c>.</value>
-        public bool ClipByXAxis
-        {
-            get
-            {
-                return (bool)this.GetValue(ClipByXAxisProperty);
-            }
-
-            set
-            {
-                this.SetValue(ClipByXAxisProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to clip the annotation line by the Y axis range.
-        /// </summary>
-        /// <value><c>true</c> if clipping by the Y axis is enabled; otherwise, <c>false</c>.</value>
-        public bool ClipByYAxis
-        {
-            get
-            {
-                return (bool)this.GetValue(ClipByYAxisProperty);
-            }
-
-            set
-            {
-                this.SetValue(ClipByYAxisProperty, value);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the text should be clipped within the plot area.
-        /// </summary>
-        /// <value><c>true</c> if text should be clipped; otherwise, <c>false</c>.</value>
-        public bool ClipText
-        {
-            get
-            {
-                return (bool)this.GetValue(ClipTextProperty);
-            }
-
-            set
-            {
-                this.SetValue(ClipTextProperty, value);
-            }
-        }
 
         /// <summary>
         /// Gets or sets the annotation color.
@@ -281,9 +212,6 @@ namespace OxyPlot.Wpf
             var a = (Annotations.PathAnnotation)this.InternalAnnotation;
             a.Color = this.Color.ToOxyColor();
 
-            a.ClipByXAxis = this.ClipByXAxis;
-            a.ClipByYAxis = this.ClipByYAxis;
-
             a.StrokeThickness = this.StrokeThickness;
             a.LineStyle = this.LineStyle;
             a.LineJoin = this.LineJoin;
@@ -291,7 +219,6 @@ namespace OxyPlot.Wpf
             a.TextLinePosition = this.TextLinePosition;
             a.TextOrientation = this.TextOrientation;
             a.TextMargin = this.TextMargin;
-            a.ClipText = this.ClipText;
         }
     }
 }

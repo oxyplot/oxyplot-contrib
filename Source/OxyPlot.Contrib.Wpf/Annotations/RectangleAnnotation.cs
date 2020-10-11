@@ -20,25 +20,25 @@ namespace OxyPlot.Wpf
         /// Identifies the <see cref="MaximumX"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty MaximumXProperty = DependencyProperty.Register(
-            "MaximumX", typeof(double), typeof(RectangleAnnotation), new PropertyMetadata(double.MaxValue, DataChanged));
+            "MaximumX", typeof(double), typeof(RectangleAnnotation), new PropertyMetadata(double.PositiveInfinity, DataChanged));
 
         /// <summary>
         /// Identifies the <see cref="MaximumY"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty MaximumYProperty = DependencyProperty.Register(
-            "MaximumY", typeof(double), typeof(RectangleAnnotation), new PropertyMetadata(double.MaxValue, DataChanged));
+            "MaximumY", typeof(double), typeof(RectangleAnnotation), new PropertyMetadata(double.PositiveInfinity, DataChanged));
 
         /// <summary>
         /// Identifies the <see cref="MinimumX"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty MinimumXProperty = DependencyProperty.Register(
-            "MinimumX", typeof(double), typeof(RectangleAnnotation), new PropertyMetadata(double.MinValue, DataChanged));
+            "MinimumX", typeof(double), typeof(RectangleAnnotation), new PropertyMetadata(double.NegativeInfinity, DataChanged));
 
         /// <summary>
         /// Identifies the <see cref="MinimumY"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty MinimumYProperty = DependencyProperty.Register(
-            "MinimumY", typeof(double), typeof(RectangleAnnotation), new PropertyMetadata(double.MinValue, DataChanged));
+            "MinimumY", typeof(double), typeof(RectangleAnnotation), new PropertyMetadata(double.NegativeInfinity, DataChanged));
 
         /// <summary>
         /// Initializes static members of the <see cref="RectangleAnnotation"/> class.

@@ -10,6 +10,7 @@ namespace CsvDemo
     using System.IO;
     using OxyPlot;
     using OxyPlot.Axes;
+    using OxyPlot.Legends;
     using OxyPlot.Series;
 
     using WpfExamples;
@@ -41,8 +42,6 @@ namespace CsvDemo
             var tmp = new PlotModel
             {
                 Title = Path.GetFileNameWithoutExtension(file),
-                LegendPosition = LegendPosition.RightTop,
-                LegendPlacement = LegendPlacement.Outside,
                 PlotMargins = new OxyThickness(50, 0, 0, 40)
             };
             for (int i = 1; i < doc.Headers.Length; i++)
@@ -59,6 +58,13 @@ namespace CsvDemo
             }
 
             tmp.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, Title = doc.Headers[0] });
+
+            tmp.Legends.Add(new Legend()
+            {
+                LegendPosition = LegendPosition.RightTop,
+                LegendPlacement = LegendPlacement.Outside,
+            });
+
             this.Model = tmp;
         }
 

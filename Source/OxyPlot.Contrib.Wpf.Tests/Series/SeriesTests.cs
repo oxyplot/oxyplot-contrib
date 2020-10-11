@@ -23,11 +23,11 @@ namespace OxyPlot.Wpf.Tests
                 OxyAssert.PropertiesExist(typeof(PlotElement), typeof(Series));
             }
 
-            [Test]
-            public void SelectableElement()
-            {
-                OxyAssert.PropertiesExist(typeof(SelectableElement), typeof(Series));
-            }
+            //[Test]
+            //public void SelectableElement()
+            //{
+            //    OxyAssert.PropertiesExist(typeof(SelectableElement), typeof(Series));
+            //}
 
             [Test]
             public void Series()
@@ -98,6 +98,22 @@ namespace OxyPlot.Wpf.Tests
             {
                 var s1 = new OxyPlot.Series.PieSeries();
                 var s2 = new PieSeries();
+                OxyAssert.PropertiesAreEqual(s1, s2);
+            }
+
+            [Test]
+            public void RectangleSeries()
+            {
+                var s1 = new OxyPlot.Series.RectangleSeries();
+                var s2 = new RectangleSeries();
+                OxyAssert.PropertiesAreEqual(s1, s2);
+            }
+
+            [Test]
+            public void HistogramSeries()
+            {
+                var s1 = new OxyPlot.Series.HistogramSeries();
+                var s2 = new HistogramSeries();
                 OxyAssert.PropertiesAreEqual(s1, s2);
             }
             /*

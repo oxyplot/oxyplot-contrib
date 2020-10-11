@@ -21,6 +21,8 @@
                 </contrib:Plot.Axes>
                 <contrib:Plot.Annotations>
                     <contrib:EllipseAnnotation Text="EllipseAnnotation1" X="50" Y="50" Width="20" Height="10"/>
+                    <contrib:EllipseAnnotation Text="EllipseAnnotation2" X="50" Y="80" Width="20" Height="10"/>
+                    <contrib:EllipseAnnotation Text="EllipseAnnotation3" X="80" Y="50" Width="20" Height="10"/>
                 </contrib:Plot.Annotations>
             </contrib:Plot>
         </TabItem>

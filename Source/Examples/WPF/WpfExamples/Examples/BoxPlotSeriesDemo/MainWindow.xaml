@@ -11,10 +11,12 @@
             <oxy:PlotView Model="{Binding Model1}" />
         </TabItem>
         <TabItem Header="Define plot in XAML">
-            <contrib:Plot Title="BoxPlot series (XAML)"
-                      LegendOrientation="Vertical"
+            <contrib:Plot Title="BoxPlot series (XAML)">
+                <contrib:Plot.Legends>
+                    <contrib:Legend LegendOrientation="Vertical"
                       LegendPlacement="Outside"
-                      LegendPosition="RightTop">
+                      LegendPosition="RightTop" />
+                </contrib:Plot.Legends>
                 <contrib:Plot.Axes>
                     <contrib:LinearAxis AbsoluteMinimum="0"
                                     MaximumPadding="0.3"

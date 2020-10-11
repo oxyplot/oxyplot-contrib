@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFrameworks>net45;netcoreapp3.0</TargetFrameworks>
+    <TargetFrameworks>net45;netcoreapp3.1</TargetFrameworks>
     <UseWPF>true</UseWPF>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -24,10 +24,9 @@
     <Reference Include="System.Printing" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OxyPlot\OxyPlot.csproj" />
-    <ProjectReference Include="..\OxyPlot.Wpf\OxyPlot.Wpf.csproj" />
+    <None Include="OxyPlot.Contrib.Wpf.snk" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="OxyPlot.Contrib.Wpf.snk" />
+    <PackageReference Include="OxyPlot.Wpf" Version="2.1.0-unstable.1440" />
   </ItemGroup>
 </Project>

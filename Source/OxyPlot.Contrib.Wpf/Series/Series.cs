@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace OxyPlot.Wpf
 {
+    using OxyPlot.Contrib.Wpf;
     using System;
     using System.Collections;
     using System.Collections.Specialized;
@@ -53,6 +54,15 @@ namespace OxyPlot.Wpf
         /// </summary>
         public static readonly DependencyProperty TrackerKeyProperty = DependencyProperty.Register(
             "TrackerKey", typeof(string), typeof(Series), new PropertyMetadata(null, AppearanceChanged));
+
+        /// <summary>
+        /// Identifies the <see cref="EdgeRenderingMode"/> dependency property.
+        /// </summary>
+        public static readonly DependencyProperty EdgeRenderingModeProperty = DependencyProperty.Register(
+            "EdgeRenderingMode",
+            typeof(EdgeRenderingMode),
+            typeof(Series),
+            new PropertyMetadata(EdgeRenderingMode.Automatic, AppearanceChanged));
 
         /// <summary>
         /// The event listener used to subscribe to ItemSource.CollectionChanged events
@@ -162,6 +172,22 @@ namespace OxyPlot.Wpf
         }
 
         /// <summary>
+        /// Gets or sets the <see cref="OxyPlot.EdgeRenderingMode"/> for the annotation.
+        /// </summary>
+        public EdgeRenderingMode EdgeRenderingMode
+        {
+            get
+            {
+                return (EdgeRenderingMode)this.GetValue(EdgeRenderingModeProperty);
+            }
+
+            set
+            {
+                this.SetValue(EdgeRenderingModeProperty, value);
+            }
+        }
+
+        /// <summary>
         /// Creates the model.
         /// </summary>
         /// <returns>A series.</returns>
@@ -192,11 +218,7 @@ namespace OxyPlot.Wpf
         /// </summary>
         protected void OnDataChanged()
         {
-            var pc = this.Parent as IPlotView;
-            if (pc != null)
-            {
-                pc.InvalidatePlot();
-            }
+            (((Series)this).Parent as IPlot)?.ElementDataChanged(this);
         }
 
         /// <summary>
@@ -216,11 +238,7 @@ namespace OxyPlot.Wpf
         /// </summary>
         protected void OnVisualChanged()
         {
-            var pc = this.Parent as IPlotView;
-            if (pc != null)
-            {
-                pc.InvalidatePlot(false);
-            }
+            (((Series)this).Parent as IPlot)?.ElementAppearanceChanged(this);
         }
 
         /// <summary>
@@ -238,6 +256,7 @@ namespace OxyPlot.Wpf
             s.IsVisible = this.Visibility == Visibility.Visible;
             s.Font = this.FontFamily.ToString();
             s.TextColor = this.Foreground.ToOxyColor();
+            s.EdgeRenderingMode = this.EdgeRenderingMode;
         }
 
         /// <summary>

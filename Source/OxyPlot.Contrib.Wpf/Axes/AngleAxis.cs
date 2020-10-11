@@ -37,7 +37,7 @@ namespace OxyPlot.Wpf
         {
             MajorGridlineStyleProperty.OverrideMetadata(typeof(AngleAxis), new PropertyMetadata(LineStyle.Solid));
             MinorGridlineStyleProperty.OverrideMetadata(typeof(AngleAxis), new PropertyMetadata(LineStyle.Solid));
-            PositionProperty.OverrideMetadata(typeof(AngleAxis), new PropertyMetadata(AxisPosition.None, AppearanceChanged));
+            PositionProperty.OverrideMetadata(typeof(AngleAxis), new PropertyMetadata(AxisPosition.All, AppearanceChanged));
             TickStyleProperty.OverrideMetadata(typeof(AngleAxis), new PropertyMetadata(TickStyle.None, AppearanceChanged));
             IsPanEnabledProperty.OverrideMetadata(typeof(AngleAxis), new PropertyMetadata(false));
             IsZoomEnabledProperty.OverrideMetadata(typeof(AngleAxis), new PropertyMetadata(false));

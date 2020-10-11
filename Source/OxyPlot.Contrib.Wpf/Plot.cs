@@ -9,6 +9,7 @@
 
 namespace OxyPlot.Wpf
 {
+    using OxyPlot.Contrib.Wpf;
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
     using System.Linq;
@@ -21,12 +22,12 @@ namespace OxyPlot.Wpf
     /// </summary>
     [ContentProperty("Series")]
     [TemplatePart(Name = PartGrid, Type = typeof(Grid))]
-    public partial class Plot : PlotBase
+    public partial class Plot : PlotView, IPlot
     {
         /// <summary>
         /// The internal model.
         /// </summary>
-        private readonly PlotModel internalModel;
+        private PlotModel internalModel => ActualModel;
 
         /// <summary>
         /// The default controller.
@@ -50,14 +51,17 @@ namespace OxyPlot.Wpf
             this.series = new ObservableCollection<Series>();
             this.axes = new ObservableCollection<Axis>();
             this.annotations = new ObservableCollection<Annotation>();
+            this.legends = new ObservableCollection<Legend>();
 
             this.series.CollectionChanged += this.OnSeriesChanged;
             this.axes.CollectionChanged += this.OnAxesChanged;
             this.annotations.CollectionChanged += this.OnAnnotationsChanged;
+            this.legends.CollectionChanged += this.OnAnnotationsChanged;
 
             this.defaultController = new PlotController();
-            this.internalModel = new PlotModel();
-            ((IPlotModel)this.internalModel).AttachPlotView(this);
+            var plot = new PlotModel();
+            ((IPlotModel)plot).AttachPlotView(this);
+            this.Model = plot;
         }
 
         /// <summary>
@@ -69,30 +73,6 @@ namespace OxyPlot.Wpf
             get
             {
                 return this.annotations;
-            }
-        }
-
-        /// <summary>
-        /// Gets the actual model.
-        /// </summary>
-        /// <value>The actual model.</value>
-        public override PlotModel ActualModel
-        {
-            get
-            {
-                return this.internalModel;
-            }
-        }
-
-        /// <summary>
-        /// Gets the actual Plot controller.
-        /// </summary>
-        /// <value>The actual Plot controller.</value>
-        public override IPlotController ActualController
-        {
-            get
-            {
-                return this.defaultController;
             }
         }
 
@@ -117,21 +97,30 @@ namespace OxyPlot.Wpf
                 {
                     yield return s;
                 }
+
+                foreach (var legend in this.Legends)
+                {
+                    yield return legend;
+                }
             }
         }
 
         /// <summary>
         /// Updates the model. If Model==<c>null</c>, an internal model will be created. The ActualModel.Update will be called (updates all series data).
         /// </summary>
-        /// <param name="updateData">if set to <c>true</c> , all data collections will be updated.</param>
-        protected override void UpdateModel(bool updateData = true)
+        /// <param name="updateData">if set to <c>true</c>, all data collections will be updated.</param>
+        protected virtual void UpdateModel(bool updateData = true)
         {
             this.SynchronizeProperties();
             this.SynchronizeSeries();
             this.SynchronizeAxes();
             this.SynchronizeAnnotations();
+            this.SynchronizeLegends();
 
-            base.UpdateModel(updateData);
+            if (this.ActualModel != null)
+            {
+                ((IPlotModel)this.ActualModel).Update(updateData);
+            }
         }
 
         /// <summary>
@@ -139,7 +128,31 @@ namespace OxyPlot.Wpf
         /// </summary>
         protected void OnAppearanceChanged()
         {
-            this.InvalidatePlot(false);
+            this.UpdateModel(false);
+            base.InvalidatePlot(false);
+        }
+
+        /// <summary>
+        /// Called when the visual appearance is changed.
+        /// </summary>
+        protected void OnDataChanged()
+        {
+            this.UpdateModel(true);
+            base.InvalidatePlot(true);
+        }
+
+        void IPlot.ElementAppearanceChanged(object element)
+        {
+            // TODO: determine type of element to perform a more fine-grained update
+            this.UpdateModel(false);
+            base.InvalidatePlot(false);
+        }
+
+        void IPlot.ElementDataChanged(object element)
+        {
+            // TODO: determine type of element to perform a more fine-grained update
+            this.UpdateModel(true);
+            base.InvalidatePlot(true);
         }
 
         /// <summary>
@@ -205,6 +218,8 @@ namespace OxyPlot.Wpf
                     this.RemoveLogicalChild(item);
                 }
             }
+
+            this.OnAppearanceChanged();
         }
 
         /// <summary>
@@ -246,37 +261,6 @@ namespace OxyPlot.Wpf
 
             m.AxisTierDistance = this.AxisTierDistance;
 
-            m.IsLegendVisible = this.IsLegendVisible;
-            m.LegendTextColor = this.LegendTextColor.ToOxyColor();
-            m.LegendTitle = this.LegendTitle;
-            m.LegendTitleColor = this.LegendTitleColor.ToOxyColor();
-            m.LegendTitleFont = this.LegendTitleFont;
-            m.LegendTitleFontSize = this.LegendTitleFontSize;
-            m.LegendTitleFontWeight = this.LegendTitleFontWeight.ToOpenTypeWeight();
-            m.LegendFont = this.LegendFont;
-            m.LegendFontSize = this.LegendFontSize;
-            m.LegendFontWeight = this.LegendFontWeight.ToOpenTypeWeight();
-            m.LegendSymbolLength = this.LegendSymbolLength;
-            m.LegendSymbolMargin = this.LegendSymbolMargin;
-            m.LegendPadding = this.LegendPadding;
-            m.LegendColumnSpacing = this.LegendColumnSpacing;
-            m.LegendItemSpacing = this.LegendItemSpacing;
-            m.LegendLineSpacing = this.LegendLineSpacing;
-            m.LegendMargin = this.LegendMargin;
-            m.LegendMaxHeight = this.LegendMaxHeight;
-            m.LegendMaxWidth = this.LegendMaxWidth;
-
-            m.LegendBackground = this.LegendBackground.ToOxyColor();
-            m.LegendBorder = this.LegendBorder.ToOxyColor();
-            m.LegendBorderThickness = this.LegendBorderThickness;
-
-            m.LegendPlacement = this.LegendPlacement;
-            m.LegendPosition = this.LegendPosition;
-            m.LegendOrientation = this.LegendOrientation;
-            m.LegendItemOrder = this.LegendItemOrder;
-            m.LegendItemAlignment = this.LegendItemAlignment.ToHorizontalAlignment();
-            m.LegendSymbolPlacement = this.LegendSymbolPlacement;
-
             m.PlotAreaBackground = this.PlotAreaBackground.ToOxyColor();
             m.PlotAreaBorderColor = this.PlotAreaBorderColor.ToOxyColor();
             m.PlotAreaBorderThickness = this.PlotAreaBorderThickness.ToOxyThickness();
@@ -315,6 +299,18 @@ namespace OxyPlot.Wpf
             foreach (var s in this.Series)
             {
                 this.internalModel.Series.Add(s.CreateModel());
+            }
+        }
+
+        /// <summary>
+        /// Synchronizes the legends in the internal model.
+        /// </summary>
+        private void SynchronizeLegends()
+        {
+            this.internalModel.Legends.Clear();
+            foreach (var l in this.Legends)
+            {
+                this.internalModel.Legends.Add(l.CreateModel());
             }
         }
     }
