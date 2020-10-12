@@ -13,7 +13,8 @@ build_script:
   - msbuild Source/OxyPlot.Contrib.sln "/p:Platform=Any CPU" "/p:Configuration=Release" "/p:Version=%APPVEYOR_BUILD_VERSION%"
 
 artifacts:
-  - path: '*.nupkg'
+  - path: '**/bin/Release/**/*.nupkg'
+    name: packages
 
 deploy:
   provider: NuGet
@@ -22,4 +23,4 @@ deploy:
     secure: 2GnqgfpkOUH6Umfn1WWlun0b021+QeInBXkgQOQfa4/wDOYHLT757rrjTsb0lmon
   skip_symbols: false
   symbol_server:           # remove to push symbols to SymbolSource.org
-  artifact: /.*\.nupkg/
+  artifact: packages
