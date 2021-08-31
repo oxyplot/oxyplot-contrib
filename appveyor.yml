@@ -1,6 +1,4 @@
 image: Visual Studio 2019
-platform: Any CPU
-configuration: Release
 version: '2.1.0-unstable.{build}'
 
 pull_requests:
