@@ -6,11 +6,11 @@
       <OutputType>WinExe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="OxyPlot.Wpf" Version="2.1.0-unstable.1440" />
+    <PackageReference Include="OxyPlot.Wpf" Version="2.1.0" />
     <ProjectReference Include="..\..\..\OxyPlot.Contrib.Wpf\OxyPlot.Contrib.Wpf.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="PropertyTools.Wpf" Version="3.1.0-alpha0009" />
+    <PackageReference Include="PropertyTools.Wpf" Version="3.1.0" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
