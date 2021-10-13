@@ -26,6 +26,9 @@
                         LineStyle="Dot" StrokeThickness="2"
                         Color="Green" />
       </contrib:Plot.Series>
+      <contrib:Plot.Legends>
+        <contrib:Legend />
+      </contrib:Plot.Legends>
     </contrib:Plot>
   </Grid>
 </Window>

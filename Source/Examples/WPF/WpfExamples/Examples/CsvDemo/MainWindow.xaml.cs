@@ -143,7 +143,7 @@ namespace CsvDemo
 
         private void HelpWeb_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("http://oxyplot.org");
+            Process.Start("https://oxyplot.github.io/");
         }
     }
 }
