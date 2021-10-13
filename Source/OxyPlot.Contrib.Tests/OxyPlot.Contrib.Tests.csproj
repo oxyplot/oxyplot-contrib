@@ -12,11 +12,10 @@
     <PackageTags>plotting plot charting chart</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/oxyplot/oxyplot-contrib.git</RepositoryUrl>
-    <Version>1.0.0-develop0001</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OxyPlot.Core" Version="2.0.0-unstable1030" />
+    <PackageReference Include="OxyPlot.Core" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
