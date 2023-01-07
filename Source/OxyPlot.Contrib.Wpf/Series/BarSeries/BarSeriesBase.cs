@@ -98,7 +98,7 @@ namespace OxyPlot.Wpf
         /// Identifies the <see cref="ValueField"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty ValueFieldProperty = DependencyProperty.Register(
-            "ValueField", typeof(string), typeof(BarSeriesBase), new PropertyMetadata(null, AppearanceChanged));
+            "ValueField", typeof(string), typeof(BarSeriesBase), new PropertyMetadata(null, DataChanged));
 
         /// <summary>
         /// Initializes static members of the <see cref="BarSeriesBase" /> class.
