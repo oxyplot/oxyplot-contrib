@@ -28,39 +28,39 @@ namespace OxyPlot.Wpf
         /// </summary>
         public static readonly DependencyProperty IsLegendVisibleProperty =
             DependencyProperty.Register(
-                "IsLegendVisible", typeof(bool), typeof(Plot), new PropertyMetadata(true, AppearanceChanged));
+                "IsLegendVisible", typeof(bool), typeof(Legend), new PropertyMetadata(true, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendBackground"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LegendBackgroundProperty =
             DependencyProperty.Register(
-                "LegendBackground", typeof(Color), typeof(Plot), new PropertyMetadata(MoreColors.Undefined, AppearanceChanged));
+                "LegendBackground", typeof(Color), typeof(Legend), new PropertyMetadata(MoreColors.Undefined, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendBorder"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LegendBorderProperty = DependencyProperty.Register(
-            "LegendBorder", typeof(Color), typeof(Plot), new PropertyMetadata(MoreColors.Undefined, AppearanceChanged));
+            "LegendBorder", typeof(Color), typeof(Legend), new PropertyMetadata(MoreColors.Undefined, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendBorderThickness"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LegendBorderThicknessProperty =
             DependencyProperty.Register(
-                "LegendBorderThickness", typeof(double), typeof(Plot), new PropertyMetadata(1.0, AppearanceChanged));
+                "LegendBorderThickness", typeof(double), typeof(Legend), new PropertyMetadata(1.0, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendFont"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LegendFontProperty = DependencyProperty.Register(
-            "LegendFont", typeof(string), typeof(Plot), new PropertyMetadata(null, AppearanceChanged));
+            "LegendFont", typeof(string), typeof(Legend), new PropertyMetadata(null, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendFontSize"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LegendFontSizeProperty = DependencyProperty.Register(
-            "LegendFontSize", typeof(double), typeof(Plot), new PropertyMetadata(12.0, AppearanceChanged));
+            "LegendFontSize", typeof(double), typeof(Legend), new PropertyMetadata(12.0, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendFontWeight"/> dependency property.
@@ -69,7 +69,7 @@ namespace OxyPlot.Wpf
             DependencyProperty.Register(
                 "LegendFontWeight",
                 typeof(FontWeight),
-                typeof(Plot),
+                typeof(Legend),
                 new PropertyMetadata(FontWeights.Normal, AppearanceChanged));
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace OxyPlot.Wpf
             DependencyProperty.Register(
                 "LegendItemAlignment",
                 typeof(HorizontalAlignment),
-                typeof(Plot),
+                typeof(Legend),
                 new PropertyMetadata(HorizontalAlignment.Left, AppearanceChanged));
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace OxyPlot.Wpf
             DependencyProperty.Register(
                 "LegendItemOrder",
                 typeof(LegendItemOrder),
-                typeof(Plot),
+                typeof(Legend),
                 new PropertyMetadata(LegendItemOrder.Normal, AppearanceChanged));
 
         /// <summary>
@@ -97,32 +97,32 @@ namespace OxyPlot.Wpf
         /// </summary>
         public static readonly DependencyProperty LegendItemSpacingProperty =
             DependencyProperty.Register(
-                "LegendItemSpacing", typeof(double), typeof(Plot), new PropertyMetadata(24.0, AppearanceChanged));
+                "LegendItemSpacing", typeof(double), typeof(Legend), new PropertyMetadata(24.0, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendLineSpacing"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LegendLineSpacingProperty =
             DependencyProperty.Register(
-                "LegendLineSpacing", typeof(double), typeof(Plot), new PropertyMetadata(0d, AppearanceChanged));
+                "LegendLineSpacing", typeof(double), typeof(Legend), new PropertyMetadata(0d, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendMargin"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LegendMarginProperty = DependencyProperty.Register(
-            "LegendMargin", typeof(double), typeof(Plot), new PropertyMetadata(8.0, AppearanceChanged));
+            "LegendMargin", typeof(double), typeof(Legend), new PropertyMetadata(8.0, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendMaxHeight"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LegendMaxHeightProperty =
-            DependencyProperty.Register("LegendMaxHeight", typeof(double), typeof(Plot), new UIPropertyMetadata(double.NaN, AppearanceChanged));
+            DependencyProperty.Register("LegendMaxHeight", typeof(double), typeof(Legend), new UIPropertyMetadata(double.NaN, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendMaxWidth"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LegendMaxWidthProperty =
-            DependencyProperty.Register("LegendMaxWidth", typeof(double), typeof(Plot), new UIPropertyMetadata(double.NaN, AppearanceChanged));
+            DependencyProperty.Register("LegendMaxWidth", typeof(double), typeof(Legend), new UIPropertyMetadata(double.NaN, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendOrientation"/> dependency property.
@@ -131,20 +131,20 @@ namespace OxyPlot.Wpf
             DependencyProperty.Register(
                 "LegendOrientation",
                 typeof(LegendOrientation),
-                typeof(Plot),
+                typeof(Legend),
                 new PropertyMetadata(LegendOrientation.Vertical, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendColumnSpacing"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LegendColumnSpacingProperty =
-            DependencyProperty.Register("LegendColumnSpacing", typeof(double), typeof(Plot), new UIPropertyMetadata(8.0, AppearanceChanged));
+            DependencyProperty.Register("LegendColumnSpacing", typeof(double), typeof(Legend), new UIPropertyMetadata(8.0, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendPadding"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LegendPaddingProperty = DependencyProperty.Register(
-            "LegendPadding", typeof(double), typeof(Plot), new PropertyMetadata(8.0, AppearanceChanged));
+            "LegendPadding", typeof(double), typeof(Legend), new PropertyMetadata(8.0, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendPlacement"/> dependency property.
@@ -153,7 +153,7 @@ namespace OxyPlot.Wpf
             DependencyProperty.Register(
                 "LegendPlacement",
                 typeof(LegendPlacement),
-                typeof(Plot),
+                typeof(Legend),
                 new PropertyMetadata(LegendPlacement.Inside, AppearanceChanged));
 
         /// <summary>
@@ -162,7 +162,7 @@ namespace OxyPlot.Wpf
         public static readonly DependencyProperty LegendPositionProperty = DependencyProperty.Register(
             "LegendPosition",
             typeof(LegendPosition),
-            typeof(Plot),
+            typeof(Legend),
             new PropertyMetadata(LegendPosition.RightTop, AppearanceChanged));
 
         /// <summary>
@@ -170,14 +170,14 @@ namespace OxyPlot.Wpf
         /// </summary>
         public static readonly DependencyProperty LegendSymbolLengthProperty =
             DependencyProperty.Register(
-                "LegendSymbolLength", typeof(double), typeof(Plot), new PropertyMetadata(16.0, AppearanceChanged));
+                "LegendSymbolLength", typeof(double), typeof(Legend), new PropertyMetadata(16.0, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendSymbolMargin"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LegendSymbolMarginProperty =
             DependencyProperty.Register(
-                "LegendSymbolMargin", typeof(double), typeof(Plot), new PropertyMetadata(4.0, AppearanceChanged));
+                "LegendSymbolMargin", typeof(double), typeof(Legend), new PropertyMetadata(4.0, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendSymbolPlacement"/> dependency property.
@@ -186,40 +186,40 @@ namespace OxyPlot.Wpf
             DependencyProperty.Register(
                 "LegendSymbolPlacement",
                 typeof(LegendSymbolPlacement),
-                typeof(Plot),
+                typeof(Legend),
                 new PropertyMetadata(LegendSymbolPlacement.Left, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendTextColor"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LegendTextColorProperty = DependencyProperty.Register(
-            "LegendTextColor", typeof(Color), typeof(Plot), new PropertyMetadata(MoreColors.Automatic, AppearanceChanged));
+            "LegendTextColor", typeof(Color), typeof(Legend), new PropertyMetadata(MoreColors.Automatic, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendTitle"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LegendTitleProperty = DependencyProperty.Register(
-            "LegendTitle", typeof(string), typeof(Plot), new PropertyMetadata(null, AppearanceChanged));
+            "LegendTitle", typeof(string), typeof(Legend), new PropertyMetadata(null, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendTextColor"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LegendTitleColorProperty = DependencyProperty.Register(
-            "LegendTitleColor", typeof(Color), typeof(Plot), new PropertyMetadata(MoreColors.Automatic, AppearanceChanged));
+            "LegendTitleColor", typeof(Color), typeof(Legend), new PropertyMetadata(MoreColors.Automatic, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendTitleFont"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LegendTitleFontProperty =
             DependencyProperty.Register(
-                "LegendTitleFont", typeof(string), typeof(Plot), new PropertyMetadata(null, AppearanceChanged));
+                "LegendTitleFont", typeof(string), typeof(Legend), new PropertyMetadata(null, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendTitleFontSize"/> dependency property.
         /// </summary>
         public static readonly DependencyProperty LegendTitleFontSizeProperty =
             DependencyProperty.Register(
-                "LegendTitleFontSize", typeof(double), typeof(Plot), new PropertyMetadata(12.0, AppearanceChanged));
+                "LegendTitleFontSize", typeof(double), typeof(Legend), new PropertyMetadata(12.0, AppearanceChanged));
 
         /// <summary>
         /// Identifies the <see cref="LegendTitleFontWeight"/> dependency property.
@@ -228,7 +228,7 @@ namespace OxyPlot.Wpf
             DependencyProperty.Register(
                 "LegendTitleFontWeight",
                 typeof(FontWeight),
-                typeof(Plot),
+                typeof(Legend),
                 new PropertyMetadata(FontWeights.Bold, AppearanceChanged));
 
 
