@@ -6,7 +6,7 @@
       <OutputType>WinExe</OutputType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="OxyPlot.Wpf" Version="2.1.0" />
+    <PackageReference Include="OxyPlot.Wpf" Version="2.1.2" />
     <ProjectReference Include="..\..\..\OxyPlot.Contrib.Wpf\OxyPlot.Contrib.Wpf.csproj" />
   </ItemGroup>
   <ItemGroup>
