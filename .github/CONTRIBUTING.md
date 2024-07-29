@@ -16,8 +16,6 @@ Note that your contributions must be your own work and licensed under the same t
 ## Reporting bugs
 
 First, search the issue tracker to see if the bug is already there.
-Please use the [discussion forums](http://discussion.oxyplot.org/) if you are unsure whether it is a bug in the library or a problem in your code.
-When you are sure, please add defects in the issue tracker.
 
 It is very helpful to get the generated code (use `CTRL+ALT+C` in the plot control) and report (`CTRL+ALT+R`) of the bug plot. You can also take a screen shot and paste it into the description.
 
@@ -36,7 +34,7 @@ A bug report should include:
 
 ## Suggesting new features
 
-Please use the [discussion forums](http://discussion.oxyplot.org/) or add it directly in the issue tracker in the same way as bug reports.
+Please use the issue tracker in the same way as bug reports.
 
 
 ## Create your own fork
@@ -110,7 +108,7 @@ Finally, push your commits: `git push`
 
 ## Merging
 
-When the PR is submitted, Appveyor will build the code and report if the build was successful.
+When the PR is submitted, GitHub will build the code and report if the build was successful.
 A team member will then review the PR, and merge the branch if everything looks OK.
 
 If there are some issues with the PR, you must
@@ -130,7 +128,7 @@ Please contribute by creating pull requests!
 
 ## Contributing to the website
 
-The source of the [oxyplot.org](http://oxyplot.org) web site can be found in the [oxyplot.github.io](http://github.com/oxyplot/oxyplot.github.io) repository.
+The source of the [oxyplot.github.io](https://oxyplot.github.io/) web site can be found in the [oxyplot.github.io](http://github.com/oxyplot/oxyplot.github.io) repository.
 Please contribute by creating pull requests!
 
 The web-site is built by [GitHub](http://github.com/) with [Jekyll](http://jekyllrb.com/).
